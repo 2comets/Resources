@@ -53,9 +53,9 @@ function App() {
             <h1 className="text-4xl font-bold text-gray-900 mb-2">
               Mental Health <span className="text-violet-600">Resources</span>
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            {/* <p className="text-lg text-gray-600 max-w-2xl ">
               Discover curated videos, audio sessions, and educational materials to support your mental wellness journey
-            </p>
+            </p> */}
           </div>
 
           {/* Search and Filters */}
@@ -142,8 +142,8 @@ function App() {
             title="Video Resources"
             subtitle="Watch guided sessions, educational content, and therapeutic videos"
             resources={groupedResources.videos}
-            icon={<Play className="h-6 w-6" />}
             accentColor="violet"
+            icon={<Play className="h-6 w-6"/>}
           />
         )}
 
@@ -198,7 +198,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-violet-200 mt-24">
+      {/* <footer className="bg-white border-t border-violet-200 mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-600">
@@ -211,7 +211,7 @@ function App() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

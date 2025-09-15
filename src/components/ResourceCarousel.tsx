@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ResourceCard } from './ResourceCard';
 import { Resource } from '../types/Resource';
 
@@ -13,6 +12,8 @@ interface ResourceCarouselProps {
 
 export function ResourceCarousel({ title, subtitle, resources, icon, accentColor }: ResourceCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
   const itemsPerSlide = 3;
   const totalSlides = Math.ceil(resources.length / itemsPerSlide);
 
@@ -27,6 +28,44 @@ export function ResourceCarousel({ title, subtitle, resources, icon, accentColor
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
+
+  // Mouse wheel event handler with debouncing
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!carouselRef.current?.contains(e.target as Node)) return;
+      
+      e.preventDefault();
+      
+      // Prevent multiple rapid scroll events
+      if (isScrollingRef.current) return;
+      
+      isScrollingRef.current = true;
+      
+      if (e.deltaY > 0) {
+        // Scroll down - next slide
+        nextSlide();
+      } else {
+        // Scroll up - previous slide
+        prevSlide();
+      }
+      
+      // Reset the scroll lock after animation completes
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 800); // Slightly longer than transition duration
+    };
+
+    const carouselElement = carouselRef.current;
+    if (carouselElement) {
+      carouselElement.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (carouselElement) {
+        carouselElement.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [totalSlides]);
 
   const getAccentClasses = (color: string) => {
     const colorMap = {
@@ -60,8 +99,8 @@ export function ResourceCarousel({ title, subtitle, resources, icon, accentColor
   if (resources.length === 0) return null;
 
   return (
-    <section className="bg-white rounded-3xl shadow-xl border border-violet-100 overflow-hidden">
-      <div className="p-8">
+    <section className="bg-transparent rounded-2xl overflow-hidden">
+      <div className="p-0">
         {/* Section Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
@@ -71,42 +110,18 @@ export function ResourceCarousel({ title, subtitle, resources, icon, accentColor
             <div>
               <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
               <p className="text-gray-600 mt-1">{subtitle}</p>
+              {totalSlides > 1 && (
+                <p className="text-xs text-gray-400 mt-1">💡 Scroll with mouse wheel to navigate</p>
+              )}
             </div>
           </div>
           
-          {/* Navigation Controls */}
-          {totalSlides > 1 && (
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={prevSlide}
-                disabled={currentSlide === 0}
-                className={`p-2 rounded-xl border ${accentClasses.border} transition-all duration-200 ${
-                  currentSlide === 0
-                    ? 'text-gray-400 bg-gray-50 cursor-not-allowed'
-                    : `${accentClasses.text} hover:bg-gray-50`
-                }`}
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={nextSlide}
-                disabled={currentSlide === totalSlides - 1}
-                className={`p-2 rounded-xl border ${accentClasses.border} transition-all duration-200 ${
-                  currentSlide === totalSlides - 1
-                    ? 'text-gray-400 bg-gray-50 cursor-not-allowed'
-                    : `${accentClasses.text} hover:bg-gray-50`
-                }`}
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Carousel Container */}
-        <div className="relative overflow-hidden">
+        <div ref={carouselRef} className="relative overflow-hidden">
           <div 
-            className="flex transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-700 ease-out"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {Array.from({ length: totalSlides }, (_, slideIndex) => (
@@ -114,7 +129,7 @@ export function ResourceCarousel({ title, subtitle, resources, icon, accentColor
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {resources
                     .slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
-                    .map((resource, index) => (
+                    .map((resource) => (
                       <div key={resource.id} className="h-full">
                         <ResourceCard resource={resource} accentColor={accentColor} />
                       </div>

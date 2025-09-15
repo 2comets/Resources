@@ -14,7 +14,9 @@ export const mockResources: Resource[] = [
     languages: ['English', 'Spanish'],
     tags: ['meditation', 'anxiety', 'mindfulness', 'beginners', 'calming'],
     difficulty: 'beginner',
-    url: '#'
+    url: '#',
+    embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: 'v2',
@@ -28,7 +30,9 @@ export const mockResources: Resource[] = [
     languages: ['English'],
     tags: ['depression', 'therapy', 'recovery', 'education', 'professional'],
     difficulty: 'intermediate',
-    url: '#'
+    url: '#',
+    embedUrl: 'https://www.youtube.com/embed/9bZkp7q19f0',
+    youtubeUrl: 'https://www.youtube.com/watch?v=9bZkp7q19f0'
   },
   {
     id: 'v3',
@@ -42,7 +46,9 @@ export const mockResources: Resource[] = [
     languages: ['English', 'French'],
     tags: ['breathing', 'stress', 'anxiety', 'quick-relief', 'techniques'],
     difficulty: 'beginner',
-    url: '#'
+    url: '#',
+    embedUrl: 'https://www.youtube.com/embed/inpok4MKVLM',
+    youtubeUrl: 'https://www.youtube.com/watch?v=inpok4MKVLM'
   },
   {
     id: 'v4',
@@ -56,7 +62,9 @@ export const mockResources: Resource[] = [
     languages: ['English'],
     tags: ['cbt', 'therapy', 'thoughts', 'coping', 'exercises'],
     difficulty: 'intermediate',
-    url: '#'
+    url: '#',
+    embedUrl: 'https://www.youtube.com/embed/g7jGcn2c4hY',
+    youtubeUrl: 'https://www.youtube.com/watch?v=g7jGcn2c4hY'
   },
   {
     id: 'v5',
@@ -70,7 +78,9 @@ export const mockResources: Resource[] = [
     languages: ['English', 'Spanish'],
     tags: ['sleep', 'routine', 'wellness', 'mental-health', 'habits'],
     difficulty: 'beginner',
-    url: '#'
+    url: '#',
+    embedUrl: 'https://www.youtube.com/embed/5qap5aO4i9A',
+    youtubeUrl: 'https://www.youtube.com/watch?v=5qap5aO4i9A'
   },
   {
     id: 'v6',
@@ -84,7 +94,9 @@ export const mockResources: Resource[] = [
     languages: ['English'],
     tags: ['resilience', 'strength', 'challenges', 'emotional', 'growth'],
     difficulty: 'intermediate',
-    url: '#'
+    url: '#',
+    embedUrl: 'https://www.youtube.com/embed/jNQXAC9IVRw',
+    youtubeUrl: 'https://www.youtube.com/watch?v=jNQXAC9IVRw'
   },
 
   // Audio Resources
@@ -100,7 +112,9 @@ export const mockResources: Resource[] = [
     languages: ['Universal'],
     tags: ['nature', 'relaxation', 'ambient', 'meditation', 'sleep'],
     difficulty: 'beginner',
-    url: '#'
+    url: '#',
+    audioUrl: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+    audioExternalUrl: 'https://www.spotify.com'
   },
   {
     id: 'a2',
@@ -114,7 +128,9 @@ export const mockResources: Resource[] = [
     languages: ['English'],
     tags: ['podcast', 'social-anxiety', 'stories', 'strategies', 'expert'],
     difficulty: 'intermediate',
-    url: '#'
+    url: '#',
+    audioUrl: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+    audioExternalUrl: 'https://www.spotify.com'
   },
   {
     id: 'a3',
@@ -186,7 +202,9 @@ export const mockResources: Resource[] = [
     languages: ['English'],
     tags: ['workbook', 'anxiety', 'exercises', 'cbt', 'worksheets'],
     difficulty: 'intermediate',
-    url: '#'
+    url: '#',
+    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    pdfDownloadUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
   },
   {
     id: 'p2',
@@ -200,7 +218,9 @@ export const mockResources: Resource[] = [
     languages: ['English', 'Spanish'],
     tags: ['self-help', 'depression', 'mood', 'tracking', 'recovery'],
     difficulty: 'beginner',
-    url: '#'
+    url: '#',
+    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    pdfDownloadUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
   },
   {
     id: 'p3',
